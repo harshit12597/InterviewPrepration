@@ -1,0 +1,394 @@
+import java.util.Scanner;
+ 
+class ArmstrongNumber
+{
+  public static void main(String args[])
+  {
+    int n, sum = 0, t, remainder, digits = 0;
+ 
+    Scanner in = new Scanner(System.in);
+    System.out.println("Input a number to check if it's an Armstrong number");    
+    n = in.nextInt();
+ 
+    t = n;
+    // Count number of digits
+
+    while (t != 0) {
+      digits++;
+      t = t/10;
+    }
+ 
+    t = n;
+ 
+    while (t != 0) {
+      remainder = t%10;
+      sum = sum + power(remainder, digits);
+      t = t/10;
+    }
+ 
+    if (n == sum)
+      System.out.println(n + " is an Armstrong number.");
+    else
+      System.out.println(n + " isn't an Armstrong number.");
+  }
+
+  static int power(int n, int r) {
+    int c, p = 1;
+ 
+    for (c = 1; c <= r; c++)
+      p = p*n;
+ 
+    return p;
+  }
+}
+
+
+
+
+
+
+#include <math.h>
+#include <stdio.h>
+int main() {
+   int low, high, number, originalNumber, rem, count = 0;
+   double result = 0.0;
+   printf("Enter two numbers(intervals): ");
+   scanf("%d %d", &low, &high);
+   printf("Armstrong numbers between %d and %d are: ", low, high);
+
+   // iterate number from (low + 1) to (high - 1)
+   // In each iteration, check if number is Armstrong
+   for (number = low + 1; number < high; ++number) {
+      originalNumber = number;
+
+      // number of digits calculation
+      while (originalNumber != 0) {
+         originalNumber /= 10;
+         ++count;
+      }
+
+      originalNumber = number;
+
+      // result contains sum of nth power of individual digits
+      while (originalNumber != 0) {
+         rem = originalNumber % 10;
+         result += pow(rem, count);
+         originalNumber /= 10;
+      }
+
+      // check if number is equal to the sum of nth power of individual digits
+      if ((int)result == number) {
+         printf("%d ", number);
+      }
+
+      // resetting the values
+      count = 0;
+      result = 0;
+   }
+
+   return 0;
+}
+
+
+
+Q18
+public class Prime {
+
+    public static void main(String[] args) {
+
+        int low = 20, high = 50;
+
+        while (low < high) {
+            boolean flag = false;
+
+            for(int i = 2; i <= low/2; ++i) {
+                // condition for nonprime number
+                if(low % i == 0) {
+                    flag = true;
+                    break;
+                }
+            }
+
+            if (!flag && low != 0 && low != 1)
+                System.out.print(low + " ");
+
+            ++low;
+        }
+    }
+}
+
+
+
+
+Q19
+public class GFG{ 
+      
+    // Function to check whether a number 
+    // is prime or not 
+    static boolean isPrime(int n) 
+    { 
+        if (n <= 1) 
+            return false; 
+      
+        for (int i = 2; i <= Math.sqrt(n); i++) { 
+            if (n % i == 0) 
+                return false; 
+        } 
+      
+        return true; 
+    } 
+      
+    // Function to check if a prime number 
+    // can be expressed as sum of 
+    // two Prime Numbers 
+    static boolean isPossible(int N) 
+    { 
+        // if the number is prime, 
+        // and number-2 is also prime 
+        if (isPrime(N) && isPrime(N - 2)) 
+            return true; 
+        else
+            return false; 
+    } 
+      
+     // Driver code 
+     public static void main(String []args){ 
+           
+        int n = 13; 
+      
+        if (isPossible(n) == true) 
+            System.out.println("Yes"); 
+        else
+            System.out.println("No"); 
+     } 
+     // This code is contributed by ANKITRAI1 
+}
+
+
+
+public class DecimalToOctalExample2{    
+//creating method for conversion so that we can use it many times  
+public static String toOctal(int decimal){    
+    int rem; //declaring variable to store remainder  
+    String octal=""; //declareing variable to store octal  
+    //declaring array of octal numbers  
+    char octalchars[]={'0','1','2','3','4','5','6','7'};  
+    //writing logic of decimal to octal conversion   
+    while(decimal>0)  
+    {  
+       rem=decimal%8;   
+       octal=octalchars[rem]+octal;   
+       decimal=decimal/8;  
+    }  
+    return octal;  
+}    
+public static void main(String args[]){      
+//Calling custom method to get the octal number of given decimal value  
+System.out.println("Decimal to octal of 8 is: "+toOctal(8));  
+System.out.println("Decimal to octal of 19 is: "+toOctal(19));  
+System.out.println("Decimal to octal of 81 is: "+toOctal(81));  
+}}
+
+
+
+Q21
+public class OctalToDecimalExample3{  
+//Declaring method  
+public static int getDecimal(int octal){    
+    //Declaring variable to store decimal number  
+    int decimal = 0;    
+    //Declaring variable to use in power  
+    int n = 0;    
+    //writing logic   
+    while(true){    
+      if(octal == 0){    
+        break;    
+      } else {    
+          int temp = octal%10;    
+          decimal += temp*Math.pow(8, n);    
+          octal = octal/10;    
+          n++;    
+       }    
+    }    
+    return decimal;    
+}    
+public static void main(String args[]){      
+//Printing the result of conversion  
+System.out.println("Decimal of 121 octal is: "+getDecimal(121));    
+System.out.println("Decimal of 23 octal is: "+getDecimal(23));    
+System.out.println("Decimal of 10 octal is: "+getDecimal(10));    
+}}
+
+
+
+Q22
+public class BinaryToDecimalExample3{    
+public static int getDecimal(int binary){  
+    int decimal = 0;  
+    int n = 0;  
+    while(true){  
+      if(binary == 0){  
+        break;  
+      } else {  
+          int temp = binary%10;  
+          decimal += temp*Math.pow(2, n);  
+          binary = binary/10;  
+          n++;  
+       }  
+    }  
+    return decimal;  
+}  
+public static void main(String args[]){    
+System.out.println("Decimal of 1010 is: "+getDecimal(1010));  
+System.out.println("Decimal of 10101 is: "+getDecimal(10101));  
+System.out.println("Decimal of 11111 is: "+getDecimal(11111));  
+}}
+
+Q23
+class DecimalBinaryExample{
+ 
+  public void convertBinary(int num){
+     int binary[] = new int[40];
+     int index = 0;
+     while(num > 0){
+       binary[index++] = num%2;
+       num = num/2;
+     }
+     for(int i = index-1;i >= 0;i--){
+       System.out.print(binary[i]);
+     }
+  }
+ 
+  public static void main(String a[]){
+     DecimalBinaryExample obj = new DecimalBinaryExample();
+     System.out.println("Binary representation of 124: ");
+     obj.convertBinary(124);
+     System.out.println("\nBinary representation of 45: ");
+     obj.convertBinary(45);
+     System.out.println("\nBinary representation of 999: ");
+     obj.convertBinary(999);
+  }
+}
+
+
+Q24
+class FactorialExample2{  
+ static int factorial(int n){    
+  if (n == 0)    
+    return 1;    
+  else    
+    return(n * factorial(n-1));    
+ }    
+ public static void main(String args[]){  
+  int i,fact=1;  
+  int number=4;//It is the number to calculate factorial    
+  fact = factorial(number);   
+  System.out.println("Factorial of "+number+" is: "+fact);    
+ }  
+}
+
+
+Q25
+public class BinaryOctal {
+
+    public static void main(String[] args) {
+        long binary = 101001;
+        int octal = convertBinarytoOctal(binary);
+        System.out.printf("%d in binary = %d in octal", binary, octal);
+    }
+
+    public static int convertBinarytoOctal(long binaryNumber)
+    {
+        int octalNumber = 0, decimalNumber = 0, i = 0;
+
+        while(binaryNumber != 0)
+        {
+            decimalNumber += (binaryNumber % 10) * Math.pow(2, i);
+            ++i;
+            binaryNumber /= 10;
+        }
+
+        i = 1;
+
+        while (decimalNumber != 0)
+        {
+            octalNumber += (decimalNumber % 8) * i;
+            decimalNumber /= 8;
+            i *= 10;
+        }
+
+        return octalNumber;
+    }
+}
+
+
+Q27
+public class OctalBinary {
+
+    public static void main(String[] args) {
+        int octal = 67;
+        long binary = convertOctalToBinary(octal);
+        System.out.printf("%d in octal = %d in binary", octal, binary);
+    }
+
+    public static long convertOctalToBinary(int octalNumber)
+    {
+        int decimalNumber = 0, i = 0;
+        long binaryNumber = 0;
+
+        while(octalNumber != 0)
+        {
+            decimalNumber += (octalNumber % 10) * Math.pow(8, i);
+            ++i;
+            octalNumber/=10;
+        }
+
+        i = 1;
+
+        while (decimalNumber != 0)
+        {
+            binaryNumber += (decimalNumber % 2) * i;
+            decimalNumber /= 2;
+            i *= 10;
+        }
+
+        return binaryNumber;
+    }
+}
+
+
+Q28
+public class Reverse {
+
+  public static void main(String[] args) {
+    String sentence = "Go work";
+    String reversed = reverse(sentence);
+    System.out.println("The reversed sentence is: " + reversed);
+  }
+
+  public static String reverse(String sentence) {
+    if (sentence.isEmpty())
+      return sentence;
+
+    return reverse(sentence.substring(1)) + sentence.charAt(0);
+  }
+}
+
+
+Q29
+public class Power {
+
+    public static void main(String[] args) {
+        int base = 3, powerRaised = 4;
+        int result = power(base, powerRaised);
+
+        System.out.printf("%d^%d = %d", base, powerRaised, result);
+    }
+
+    public static int power(int base, int powerRaised) {
+        if (powerRaised != 0)
+            return (base * power(base, powerRaised - 1));
+        else
+            return 1;
+    }
+}
